@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mumit Studio | Portfolio</title>
+
+  <!-- Bootstrap 5 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+    crossorigin="anonymous"
+  />
+
+  <!-- Bootstrap Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
+
+  <style>
+
+    /* =========================
+       GLOBAL
+    ========================= */
+
+    :root {
+      --primary: #d30000;
+      --primary-dark: #a90000;
+      --dark: #171717;
+      --gray: #666;
+      --light: #f8f8f8;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    .btn-custom {
+      background: var(--primary);
+      color: #fff !important;
+      border: 2px solid var(--primary);
+      padding: 10px 25px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: var(--transition);
+      display: inline-block;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-custom:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      color: #fff !important;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(211, 0, 0, 0.25);
+    }
+
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      padding: 12px 0;
+    }
+
+    .navbar-brand img {
+      height: 50px;
+      width: auto;
+    }
+
+    .navbar-nav {
+      gap: 8px;
+    }
+
+    .navbar .nav-link {
+      color: #222 !important;
+      font-weight: 600;
+      padding: 10px 15px !important;
+      border-radius: 25px;
+      transition: var(--transition);
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+      color: var(--primary) !important;
+      background: rgba(211, 0, 0, 0.07);
+    }
+
+    .navbar-toggler {
+      border: 1px solid #ddd;
+      box-shadow: none !important;
+    }
+
+
+    /* =========================
+       PORTFOLIO HEADER
+    ========================= */
+
+    .portfolio-header {
+      padding: 90px 15px 50px;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(211, 0, 0, 0.08),
+          transparent 35%
+        ),
+        #fff;
+    }
+
+    .portfolio-header span {
+      display: inline-block;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .portfolio-header h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .portfolio-header h1 strong {
+      color: var(--primary);
+    }
+
+    .portfolio-header p {
+      max-width: 700px;
+      margin: auto;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+
+    /* =========================
+       SEARCH BOX
+    ========================= */
+
+    .search-wrapper {
+      max-width: 600px;
+      margin: 30px auto 0;
+      position: relative;
+    }
+
+    .search-wrapper > i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+      font-size: 18px;
+      z-index: 2;
+    }
+
+    #searchInput {
+      width: 100%;
+      height: 55px;
+      padding: 0 55px;
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      outline: none;
+      font-size: 16px;
+      background: #fff;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+      transition: var(--transition);
+    }
+
+    #searchInput:focus {
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(211, 0, 0, 0.12);
+    }
+
+    #clearSearch {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      color: #999;
+      font-size: 18px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #clearSearch:hover {
+      color: var(--primary);
+    }
+
+
+    /* =========================
+       FILTER BUTTONS
+    ========================= */
+
+    .filter-section {
+      padding: 10px 15px 50px;
+    }
+
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      border: 1px solid #ddd;
+      background: #fff;
+      color: #333;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 7px 18px rgba(211, 0, 0, 0.2);
+    }
+
+
+    /* =========================
+       PORTFOLIO SECTION
+    ========================= */
+
+    .portfolio-section {
+      padding: 20px 0 100px;
+      background: #fff;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+
+    /* =========================
+       PORTFOLIO ITEM
+    ========================= */
+
+    .portfolio-item {
+      opacity: 1;
+      transform: scale(1);
+      transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+    }
+
+    .portfolio-item.hide {
+      display: none;
+    }
+
+
+    /* =========================
+       PORTFOLIO CARD
+    ========================= */
+
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+      height: 100%;
+    }
+
+    .portfolio-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+    }
+
+    .portfolio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .portfolio-card:hover .portfolio-image img {
+      transform: scale(1.08);
+    }
+
+
+    /* =========================
+       IMAGE OVERLAY
+    ========================= */
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 25px;
+      background: rgba(211, 0, 0, 0.82);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .portfolio-card:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .portfolio-overlay h3 {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      transform: translateY(15px);
+      transition: var(--transition);
+    }
+
+    .portfolio-overlay p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+      margin-bottom: 20px;
+      transform: translateY(15px);
+      transition: var(--transition);
+    }
+
+    .portfolio-card:hover .portfolio-overlay h3,
+    .portfolio-card:hover .portfolio-overlay p {
+      transform: translateY(0);
+    }
+
+
+    /* =========================
+       VIEW BUTTON
+    ========================= */
+
+    .view-btn {
+      border: 2px solid #fff;
+      color: #fff;
+      background: transparent;
+      padding: 9px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      transform: translateY(15px);
+      cursor: pointer;
+    }
+
+    .portfolio-card:hover .view-btn {
+      transform: translateY(0);
+    }
+
+    .view-btn:hover {
+      background: #fff;
+      color: var(--primary);
+    }
+
+
+    /* =========================
+       CARD INFO
+    ========================= */
+
+    .portfolio-info {
+      padding: 18px 20px;
+    }
+
+    .portfolio-info h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .portfolio-info span {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+
+    /* =========================
+       NO RESULTS
+    ========================= */
+
+    #noResults {
+      display: none;
+      text-align: center;
+      padding: 60px 15px;
+    }
+
+    #noResults i {
+      font-size: 45px;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    #noResults h3 {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    #noResults p {
+      color: #777;
+    }
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal-content {
+      border: none;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      border: none;
+      padding: 15px 20px;
+    }
+
+    .modal-title {
+      font-weight: 700;
+    }
+
+    .modal-body {
+      padding: 0;
+      background: #111;
+    }
+
+    .modal-body img {
+      width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      margin: auto;
+    }
+
+    .modal-category {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 991.98px) {
+
+      .navbar {
+        padding: 10px 0;
+      }
+
+      .navbar-collapse {
+        margin-top: 15px;
+        padding: 15px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+      }
+
+      .navbar-nav {
+        gap: 2px;
+      }
+
+      .navbar .nav-link {
+        padding: 10px 15px !important;
+      }
+
+      .navbar .btn-custom {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+
+      .portfolio-header {
+        padding-top: 70px;
+      }
+
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 767.98px) {
+
+      .navbar-brand img {
+        height: 42px;
+      }
+
+      .navbar-collapse {
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+      }
+
+      .navbar .nav-link {
+        padding: 10px 15px !important;
+      }
+
+      .portfolio-header {
+        padding: 60px 15px 40px;
+      }
+
+      .portfolio-header h1 {
+        font-size: 2.3rem;
+      }
+
+      .portfolio-header p {
+        font-size: 15px;
+      }
+
+      .filter-section {
+        padding-bottom: 35px;
+      }
+
+      .filter-buttons {
+        gap: 7px;
+      }
+
+      .filter-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+
+      .portfolio-section {
+        padding-bottom: 70px;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .portfolio-image {
+        aspect-ratio: 16 / 11;
+      }
+
+    }
+
+
+    /* =========================
+       SMALL MOBILE
+    ========================= */
+
+    @media (max-width: 575.98px) {
+
+      .portfolio-header h1 {
+        font-size: 2rem;
+      }
+
+      #searchInput {
+        height: 50px;
+        font-size: 14px;
+      }
+
+      .filter-btn {
+        padding: 7px 13px;
+        font-size: 13px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+
+  <nav class="navbar navbar-expand-lg shadow-sm">
+
+    <div class="container">
+
+      <!-- Logo -->
+      <a class="navbar-brand" href="index.html">
+
+        <img
+          src="Img/Mumit logo.png"
+          alt="Mumit Studio Logo"
+        />
+
+      </a>
+
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+
+        <span class="navbar-toggler-icon"></span>
+
+      </button>
+
+
+      <!-- Navbar Menu -->
+      <div
+        class="collapse navbar-collapse"
+        id="mainNavbar"
+      >
+
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+
+
+          <!-- Home -->
+          <li class="nav-item">
+
+            <a
+              class="nav-link"
+              href="index.html"
+            >
+              Home
+            </a>
+
+          </li>
+
+
+          <!-- About -->
+          <li class="nav-item">
+
+            <a
+              class="nav-link"
+              href="index.html#about"
+            >
+              About
+            </a>
+
+          </li>
+
+
+          <!-- Services -->
+          <li class="nav-item">
+
+            <a
+              class="nav-link"
+              href="index.html#services"
+            >
+              Services
+            </a>
+
+          </li>
+
+
+          <!-- Project -->
+          <li class="nav-item">
+
+            <a
+              class="nav-link active"
+              href="project.html"
+            >
+              Project
+            </a>
+
+          </li>
+
+
+          <!-- Testimonials -->
+          <li class="nav-item">
+
+            <a
+              class="nav-link"
+              href="index.html#testimonials"
+            >
+              Testimonials
+            </a>
+
+          </li>
+
+        </ul>
+
+
+        <!-- Get Started -->
+        <a
+          href="contact.html"
+          class="btn-custom"
+        >
+          Get Started
+        </a>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+
+  <!-- =========================
+       PORTFOLIO HEADER
+  ========================= -->
+
+  <section class="portfolio-header">
+
+    <span>
+      My Creative Work
+    </span>
+
+    <h1>
+      Our <strong>Portfolio</strong>
+    </h1>
+
+    <p>
+      Explore our latest branding, graphic design, web design,
+      and creative projects.
+    </p>
+
+
+    <!-- Search -->
+    <div class="search-wrapper">
+
+      <i class="bi bi-search"></i>
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search projects..."
+        autocomplete="off"
+      />
+
+      <button
+        id="clearSearch"
+        type="button"
+        aria-label="Clear search"
+      >
+
+        <i class="bi bi-x-lg"></i>
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       FILTER BUTTONS
+  ========================= -->
+
+  <section class="filter-section">
+
+    <div class="container">
+
+      <div class="filter-buttons">
+
+
+        <!-- All -->
+        <button
+          class="filter-btn active"
+          data-filter="all"
+          type="button"
+        >
+          All
+        </button>
+
+
+        <!-- Branding -->
+        <button
+          class="filter-btn"
+          data-filter="branding"
+          type="button"
+        >
+          Branding
+        </button>
+
+
+        <!-- Logo -->
+        <button
+          class="filter-btn"
+          data-filter="logo"
+          type="button"
+        >
+          Logo Design
+        </button>
+
+
+        <!-- Web -->
+        <button
+          class="filter-btn"
+          data-filter="web"
+          type="button"
+        >
+          Web Design
+        </button>
+
+
+        <!-- Graphic -->
+        <button
+          class="filter-btn"
+          data-filter="graphic"
+          type="button"
+        >
+          Graphic Design
+        </button>
+
+
+        <!-- Social -->
+        <button
+          class="filter-btn"
+          data-filter="social"
+          type="button"
+        >
+          Social Media
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       PORTFOLIO
+  ========================= -->
+
+  <section class="portfolio-section">
+
+    <div class="container">
+
+      <div
+        class="portfolio-grid"
+        id="portfolioGrid"
+      >
+
+
+        <!-- =====================
+             PROJECT 1
+        ====================== -->
+
+        <div
+          class="portfolio-item"
+          data-category="branding logo"
+          data-title="Dirty While Logo Branding"
+        >
+
+          <div class="portfolio-card">
+
+            <div class="portfolio-image">
+
+              <img
+                src="Img/Design1.jpg"
+                alt="Dirty While Logo Branding"
+              />
+
+              <div class="portfolio-overlay">
+
+                <h3>
+                  Dirty While
+                </h3>
+
+                <p>
+                  Logo & Branding
+                </p>
+
+                <button
+                  class="view-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal"
+                  data-title="Dirty While Logo & Branding"
+                  data-category="Branding"
+                  data-image="Img/Design1.jpg"
+                >
+                  View Project
+                </button>
+
+              </div>
+
+            </div>
+
+            <div class="portfolio-info">
+
+              <h4>
+                Dirty While
+              </h4>
+
+              <span>
+                Logo & Branding
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             PROJECT 2
+        ====================== -->
+
+        <div
+          class="portfolio-item"
+          data-category="branding logo"
+          data-title="Delos Data Logo Branding"
+        >
+
+          <div class="portfolio-card">
+
+            <div class="portfolio-image">
+
+              <img
+                src="Img/Design 2.jpg"
+                alt="Delos Data Logo Branding"
+              />
+
+              <div class="portfolio-overlay">
+
+                <h3>
+                  Delos Data
+                </h3>
+
+                <p>
+                  Logo & Branding
+                </p>
+
+                <button
+                  class="view-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal"
+                  data-title="Delos Data Logo & Branding"
+                  data-category="Branding"
+                  data-image="Img/Design 2.jpg"
+                >
+                  View Project
+                </button>
+
+              </div>
+
+            </div>
+
+            <div class="portfolio-info">
+
+              <h4>
+                Delos Data
+              </h4>
+
+              <span>
+                Logo & Branding
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             PROJECT 3
+        ====================== -->
+
+        <div
+          class="portfolio-item"
+          data-category="branding logo"
+          data-title="Green Blog Logo Branding"
+        >
+
+          <div class="portfolio-card">
+
+            <div class="portfolio-image">
+
+              <img
+                src="Img/Design 3.jpg"
+                alt="Green Blog Logo Branding"
+              />
+
+              <div class="portfolio-overlay">
+
+                <h3>
+                  Green Blog
+                </h3>
+
+                <p>
+                  Logo & Branding
+                </p>
+
+                <button
+                  class="view-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal"
+                  data-title="Green Blog Logo & Branding"
+                  data-category="Branding"
+                  data-image="Img/Design 3.jpg"
+                >
+                  View Project
+                </button>
+
+              </div>
+
+            </div>
+
+            <div class="portfolio-info">
+
+              <h4>
+                Green Blog
+              </h4>
+
+              <span>
+                Logo & Branding
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             PROJECT 4
+        ====================== -->
+
+        <div
+          class="portfolio-item"
+          data-category="web"
+          data-title="Business Website Design"
+        >
+
+          <div class="portfolio-card">
+
+            <div class="portfolio-image">
+
+              <img
+                src="Img/Design1.jpg"
+                alt="Business Website Design"
+              />
+
+              <div class="portfolio-overlay">
+
+                <h3>
+                  Business Website
+                </h3>
+
+                <p>
+                  Web Design
+                </p>
+
+                <button
+                  class="view-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal"
+                  data-title="Business Website Design"
+                  data-category="Web Design"
+                  data-image="Img/Design1.jpg"
+                >
+                  View Project
+                </button>
+
+              </div>
+
+            </div>
+
+            <div class="portfolio-info">
+
+              <h4>
+                Business Website
+              </h4>
+
+              <span>
+                Web Design
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             PROJECT 5
+        ====================== -->
+
+        <div
+          class="portfolio-item"
+          data-category="graphic"
+          data-title="Creative Graphic Design"
+        >
+
+          <div class="portfolio-card">
+
+            <div class="portfolio-image">
+
+              <img
+                src="Img/Design 2.jpg"
+                alt="Creative Graphic Design"
+              />
+
+              <div class="portfolio-overlay">
+
+                <h3>
+                  Creative Design
+                </h3>
+
+                <p>
+                  Graphic Design
+                </p>
+
+                <button
+                  class="view-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal"
+                  data-title="Creative Graphic Design"
+                  data-category="Graphic Design"
+                  data-image="Img/Design 2.jpg"
+                >
+                  View Project
+                </button>
+
+              </div>
+
+            </div>
+
+            <div class="portfolio-info">
+
+              <h4>
+                Creative Design
+              </h4>
+
+              <span>
+                Graphic Design
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =====================
+             PROJECT 6
+        ====================== -->
+
+        <div
+          class="portfolio-item"
+          data-category="social graphic"
+          data-title="Social Media Design"
+        >
+
+          <div class="portfolio-card">
+
+            <div class="portfolio-image">
+
+              <img
+                src="Img/Design 3.jpg"
+                alt="Social Media Design"
+              />
+
+              <div class="portfolio-overlay">
+
+                <h3>
+                  Social Media
+                </h3>
+
+                <p>
+                  Social Media Design
+                </p>
+
+                <button
+                  class="view-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#projectModal"
+                  data-title="Social Media Design"
+                  data-category="Social Media"
+                  data-image="Img/Design 3.jpg"
+                >
+                  View Project
+                </button>
+
+              </div>
+
+            </div>
+
+            <div class="portfolio-info">
+
+              <h4>
+                Social Media
+              </h4>
+
+              <span>
+                Social Media Design
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- =========================
+           NO RESULTS
+      ========================= -->
+
+      <div id="noResults">
+
+        <i class="bi bi-search"></i>
+
+        <h3>
+          No Projects Found
+        </h3>
+
+        <p>
+          Try another search term or choose a different category.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       PROJECT MODAL
+  ========================= -->
+
+  <div
+    class="modal fade"
+    id="projectModal"
+    tabindex="-1"
+    aria-hidden="true"
+  >
+
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+
+      <div class="modal-content">
+
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+
+          <div>
+
+            <h5
+              class="modal-title"
+              id="modalTitle"
+            >
+              Project
+            </h5>
+
+            <span
+              class="modal-category"
+              id="modalCategory"
+            >
+              Category
+            </span>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+
+        </div>
+
+
+        <!-- Modal Image -->
+        <div class="modal-body">
+
+          <img
+            id="modalImage"
+            src=""
+            alt="Project preview"
+          />
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================
+       BOOTSTRAP JS
+  ========================= -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwxH9j09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"
+  ></script>
+
+
+
+  <!-- =========================
+       PORTFOLIO JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    /* =========================
+       ELEMENTS
+    ========================= */
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const clearSearch =
+      document.getElementById("clearSearch");
+
+    const portfolioItems =
+      document.querySelectorAll(".portfolio-item");
+
+    const filterButtons =
+      document.querySelectorAll(".filter-btn");
+
+    const noResults =
+      document.getElementById("noResults");
+
+    let currentFilter = "all";
+
+
+    /* =========================
+       FILTER PORTFOLIO
+    ========================= */
+
+    function filterPortfolio() {
+
+      const searchValue =
+        searchInput.value
+          .toLowerCase()
+          .trim();
+
+      let visibleCount = 0;
+
+
+      portfolioItems.forEach(function (item) {
+
+        const categories =
+          item.dataset.category
+            .toLowerCase();
+
+        const title =
+          item.dataset.title
+            .toLowerCase();
+
+
+        /* Category Match */
+
+        const categoryMatch =
+          currentFilter === "all" ||
+          categories.includes(currentFilter);
+
+
+        /* Search Match */
+
+        const searchMatch =
+          title.includes(searchValue) ||
+          categories.includes(searchValue);
+
+
+        /* Show / Hide */
+
+        if (categoryMatch && searchMatch) {
+
+          item.classList.remove("hide");
+
+          visibleCount++;
+
+        } else {
+
+          item.classList.add("hide");
+
+        }
+
+      });
+
+
+      /* =========================
+         NO RESULTS
+      ========================= */
+
+      if (visibleCount === 0) {
+
+        noResults.style.display = "block";
+
+      } else {
+
+        noResults.style.display = "none";
+
+      }
+
+
+      /* =========================
+         CLEAR SEARCH BUTTON
+      ========================= */
+
+      if (searchValue.length > 0) {
+
+        clearSearch.style.display = "block";
+
+      } else {
+
+        clearSearch.style.display = "none";
+
+      }
+
+    }
+
+
+    /* =========================
+       FILTER BUTTON CLICK
+    ========================= */
+
+    filterButtons.forEach(function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+
+          /* Remove active from all */
+
+          filterButtons.forEach(
+            function (btn) {
+
+              btn.classList.remove("active");
+
+            }
+          );
+
+
+          /* Add active */
+
+          button.classList.add("active");
+
+
+          /* Change filter */
+
+          currentFilter =
+            button.dataset.filter;
+
+
+          /* Filter */
+
+          filterPortfolio();
+
+        }
+      );
+
+    });
+
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    searchInput.addEventListener(
+      "input",
+      function () {
+
+        filterPortfolio();
+
+      }
+    );
+
+
+    /* =========================
+       CLEAR SEARCH
+    ========================= */
+
+    clearSearch.addEventListener(
+      "click",
+      function () {
+
+        searchInput.value = "";
+
+        searchInput.focus();
+
+        filterPortfolio();
+
+      }
+    );
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    const projectModal =
+      document.getElementById("projectModal");
+
+    const modalTitle =
+      document.getElementById("modalTitle");
+
+    const modalCategory =
+      document.getElementById("modalCategory");
+
+    const modalImage =
+      document.getElementById("modalImage");
+
+
+    projectModal.addEventListener(
+      "show.bs.modal",
+      function (event) {
+
+
+        /* Button that opened modal */
+
+        const button =
+          event.relatedTarget;
+
+
+        /* Get project data */
+
+        const title =
+          button.getAttribute("data-title");
+
+        const category =
+          button.getAttribute("data-category");
+
+        const image =
+          button.getAttribute("data-image");
+
+
+        /* Set modal content */
+
+        modalTitle.textContent =
+          title;
+
+        modalCategory.textContent =
+          category;
+
+        modalImage.src =
+          image;
+
+        modalImage.alt =
+          title;
+
+      }
+    );
+
+
+    /* =========================
+       INITIAL FILTER
+    ========================= */
+
+    filterPortfolio();
+
+  </script>
+
+</body>
+</html>
